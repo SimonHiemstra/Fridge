@@ -14,12 +14,17 @@
         <th>Category</th>
         <th>Brand</th>
     </tr>
-    <tr th:each="item : ${allItems}">
-        <td th:text="${item.name}"></td>
-        <td th:text="${item.catagory}"></td>
-        <td th:text="${item.brand}"></td>
+    <tr th:each="Product : ${allProducts}">
+        <td th:text="${Product.name}"></td>
+        <td th:text="${Product.catagory}"></td>
+        <td th:text="${Product.brand}"></td>
     </tr>
 </table>
+
+
+<p>
+    <a th:href="@{/product/new}">Add a new product</a>
+</p>
 
 </body>
 </html>

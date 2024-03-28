@@ -1,13 +1,13 @@
 package nl.mitw.ch13.simon.fridge.controller;
 
-import nl.mitw.ch13.simon.fridge.model.Item;
-import nl.mitw.ch13.simon.fridge.repositories.ItemRepository;
+import nl.mitw.ch13.simon.fridge.model.Product;
+import nl.mitw.ch13.simon.fridge.repositories.ProductRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  * @author Simon Hiemstra
@@ -16,20 +16,37 @@ import java.util.List;
 
 @Controller
 public class FridgeController {
-    private final ItemRepository itemRepository;
+    private final ProductRepository productRepository;
 
-    public FridgeController(ItemRepository itemRepository) {
-        this.itemRepository = itemRepository;
+    public FridgeController(ProductRepository productRepository) {
+        this.productRepository = productRepository;
     }
 
 
     @GetMapping("/")
     private String showFridgeOverview(Model model) {
 
-        model.addAttribute("allItems", itemRepository.findAll());
+        model.addAttribute("allProducts", productRepository.findAll());
         return "FridgeOverview";
     }
 
+
+
+    @GetMapping("/product/new")
+    private String showProductForm(Model model) {
+        model.addAttribute("product", new Product());
+
+        return "ProductForm";
+    }
+
+    @PostMapping("/product/new")
+    private String saveProduct(@ModelAttribute("product") Product productToBeSaved, BindingResult result) {
+        if (!result.hasErrors()) {
+            productRepository.save(productToBeSaved);
+        }
+
+        return "redirect:/";
+    }
 
 
 

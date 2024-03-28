@@ -9,22 +9,22 @@ import jakarta.persistence.Id;
  * Purpose: reprisents an item that can be placed or removed from the fridge
  **/
 @Entity
-public class Item {
+public class Product {
     private String name;
     private String catagory;
     private String brand;
     @Id @GeneratedValue
-    private long itemId;
+    private long ProductId;
 
 
 
-    public Item(String name, String catagory, String brand) {
+    public Product(String name, String catagory, String brand) {
         this.name = name;
         this.catagory = catagory;
         this.brand = brand;
     }
 
-    public Item() {
+    public Product() {
     }
 
     public String getName() {
@@ -51,11 +51,11 @@ public class Item {
         this.brand = brand;
     }
 
-    public long getItemId() {
-        return itemId;
+    public long getProductId() {
+        return ProductId;
     }
 
-    public void setItemId(long itemId) {
-        this.itemId = itemId;
+    public void setProductId(long productId) {
+        this.ProductId = productId;
     }
 }
