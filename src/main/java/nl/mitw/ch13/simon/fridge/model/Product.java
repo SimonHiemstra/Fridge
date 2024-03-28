@@ -1,15 +1,13 @@
 package nl.mitw.ch13.simon.fridge.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Simon Hiemstra
- * Purpose: reprisents an item that can be placed or removed from the fridge
+ * Purpose: reprisents a product that could be in the fridge
  **/
 @Entity
 public class Product {
@@ -20,6 +18,13 @@ public class Product {
     private long ProductId;
     @OneToMany(mappedBy = "product")
     private List<Item> items;
+
+    @ManyToMany
+    @JoinTable(name = "productBrand",
+            joinColumns = @JoinColumn(name = "productId"),
+            inverseJoinColumns = @JoinColumn(name = "brandId"))
+    private Set<Brand> productBrands;
+
 
 
     public int getNumberOfItemsInFridge() {
@@ -48,13 +53,13 @@ public class Product {
 
 
 
+    public Set<Brand> getProductBrands() {
+        return productBrands;
+    }
 
-
-
-
-
-
-
+    public void setProductBrands(Set<Brand> productBrands) {
+        this.productBrands = productBrands;
+    }
     public String getName() {
         return name;
     }

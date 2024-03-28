@@ -15,19 +15,19 @@ import org.springframework.web.bind.annotation.PostMapping;
  **/
 
 @Controller
-public class FridgeController {
+public class ProductController {
     private final ProductRepository productRepository;
 
-    public FridgeController(ProductRepository productRepository) {
+    public ProductController(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
 
 
     @GetMapping("/")
-    private String showFridgeOverview(Model model) {
+    private String showProductOverview(Model model) {
 
         model.addAttribute("allProducts", productRepository.findAll());
-        return "FridgeOverview";
+        return "ProductOverview";
     }
 
 
@@ -43,6 +43,7 @@ public class FridgeController {
     private String saveProduct(@ModelAttribute("product") Product productToBeSaved, BindingResult result) {
         if (!result.hasErrors()) {
             productRepository.save(productToBeSaved);
+
         }
 
         return "redirect:/";

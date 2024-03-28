@@ -15,7 +15,7 @@
         <th>Brand</th>
         <th>Available</th>
         <th>Total</th>
-        <th>Buy</th>
+        <th>Deposit</th>
     </tr>
     <tr th:each="product : ${allProducts}">
         <td th:text="${product.name}"></td>
@@ -23,7 +23,7 @@
         <td th:text="${product.brand}"></td>
         <td th:text="${product.getNumberOfItemsInFridge()}"></td>
         <td th:text="${product.getTotalNumberOfItems()}"></td>
-        <td><a th:href="@{/item/new/{productId}(productId = ${product.productId})}">Buy item</a> </td>
+        <td><a th:href="@{/item/new/{productId}(productId = ${product.productId})}">Deposit item</a> </td>
     </tr>
 </table>
 
