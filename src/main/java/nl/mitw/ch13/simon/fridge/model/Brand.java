@@ -13,11 +13,8 @@ import java.util.Set;
 public class Brand {
     @Id @GeneratedValue
     private Long brandId;
-    private String brandName;
 
-
-    @ManyToMany(mappedBy = "productBrands")
-    Set<Product> hasBrand;
+    private String name;
 
     public Long getBrandId() {
         return brandId;
@@ -27,19 +24,16 @@ public class Brand {
         this.brandId = brandId;
     }
 
-    public Set<Product> getHasBrand() {
-        return hasBrand;
+    public String getName() {
+        return name;
     }
 
-    public void setHasBrand(Set<Product> hasBrand) {
-        this.hasBrand = hasBrand;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getBrandName() {
-        return brandName;
-    }
-
-    public void setBrandName(String brandName) {
-        this.brandName = brandName;
+    @Override
+    public String toString() {
+        return name;
     }
 }

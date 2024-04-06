@@ -1,34 +1,51 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
+<head th:fragment="baseHeader(title)">
     <title>Create a new book</title>
 </head>
 <body>
 
-<h1>Create a new book</h1>
+<div th:replace="~{fragments/general :: navbar}"></div>
 
-<form th:action="@{/product/new}" method="post" th:object="${product}">
-    <table>
-        <tr>
-            <td><label for="nameField">Name</label></td>
-            <td><label for="categoryField">Category</label></td>
-            <td><label for="brandField">Brand</label></td>
-        </tr>
-        <tr>
-            <td>
-                <input type="text" id="nameField" th:field="*{name}" />
-            </td>
-            <td>
-                <input type="text" id="categoryField" th:field="*{catagory}" />
-            </td>
-            <td>
-                <input type="text" id="brandField" th:field="*{brand}" />
-            </td>
-        </tr>
-    </table>
+<div class="container">
 
-    <input type="submit" value="Save product" />
-</form>
+
+    <h1>Create a new book</h1>
+
+    <form th:action="@{/product/new}" method="post" th:object="${product}">
+        <input type="hidden" th:field="*{productId}">
+        <table>
+            <tr>
+                <td><label for="nameField">Name</label></td>
+                <td><label for="categoryField">Category</label></td>
+                <td><label for="brandField">Brand</label></td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" id="nameField" th:field="*{name}" /></td>
+                <td>
+                    <input type="text" id="categoryField" th:field="*{catagory}" />
+                </td>
+                <td>
+                    <select id="brandField" th:field="*{brands}">
+                        <option th:each="brand : ${allBrands}"
+                                th:text="${brand.name}"
+                                th:value="${brand.brandId}"> </option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+
+        <input type="submit" value="Save product" />
+    </form>
+
+
+
+
+</div>
+
+<div th:replace="~{fragments/general :: footer}"></div>
+<div th:replace="~{fragments/general :: bottomScripts}"></div>
+
 </body>
 </html>

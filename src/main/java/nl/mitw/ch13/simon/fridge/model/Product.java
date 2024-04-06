@@ -16,15 +16,12 @@ public class Product {
     private String brand;
     @Id @GeneratedValue
     private long ProductId;
-    @OneToMany(mappedBy = "product")
-    private List<Item> items;
 
     @ManyToMany
-    @JoinTable(name = "productBrand",
-            joinColumns = @JoinColumn(name = "productId"),
-            inverseJoinColumns = @JoinColumn(name = "brandId"))
-    private Set<Brand> productBrands;
+    private Set<Brand> brands;
 
+    @OneToMany(mappedBy = "product")
+    private List<Item> items;
 
 
     public int getNumberOfItemsInFridge() {
@@ -51,15 +48,6 @@ public class Product {
     public Product() {
     }
 
-
-
-    public Set<Brand> getProductBrands() {
-        return productBrands;
-    }
-
-    public void setProductBrands(Set<Brand> productBrands) {
-        this.productBrands = productBrands;
-    }
     public String getName() {
         return name;
     }
@@ -89,6 +77,14 @@ public class Product {
     }
 
     public void setProductId(long productId) {
-        this.ProductId = productId;
+        ProductId = productId;
+    }
+
+    public Set<Brand> getBrands() {
+        return brands;
+    }
+
+    public void setBrands(Set<Brand> brands) {
+        this.brands = brands;
     }
 }
