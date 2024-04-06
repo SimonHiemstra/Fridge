@@ -1,8 +1,7 @@
-
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
-<head th:replace="~{fragments/general :: baseHeader(~{::title})}">
-    <title>Brand Overview</title>
+<head th:replace="~{fragments/general :: baseHeader(~{:: title})}">
+    <title>Overview of all the Brands known for the fridge</title>
 </head>
 <body>
 
@@ -11,23 +10,23 @@
 <div class="container">
 <h1>Overview of all the Brands known for the fridge</h1>
 
-<table>
-    <tr>
-        <th>Name</th>
-        <th></th>
-    </tr>
-    <tr th:each="brand : ${allBrands}">
-        <td th:text="${brand.name}"></td>
-        <td></td>
-    </tr>
     <form th:action="@{/brand/new}" method="post" th:object="${newBrand}">
-        <tr>
-            <td><input type="text" th:field="*{name}"></td>
-            <td><input type="submit" value="Save new brand"></td>
-        </tr>
-    </form>
+        <table>
+            <tr>
+                <th><label for="nameField">Name</label></th>
+                <th></th>
+            </tr>
+            <tr th:each="brand : ${allBrands}">
+                <td th:text="${brand.name}"></td>
+                <td></td>
+            </tr>
 
-</table>
+                <tr>
+                    <td><input id="nameField" type="text" th:field="*{name}"></td>
+                    <td><input type="submit" value="Save new brand"></td>
+                </tr>
+        </table>
+    </form>
 
 </div>
 <div th:replace="~{fragments/general :: footer}"></div>

@@ -2,19 +2,20 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head th:fragment="baseHeader(title)">
     <meta charset="UTF-8">
-    <title>## Title Here!!##</title>
+    <title th:replace="${title}"></title>
 
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
     <link rel="stylesheet" type="text/css" href="/css/fridge.css">
 </head>
 <body>
 
 <div th:fragment="navbar">
-    <ul>
-        <li>
-            <a th:href="@{/brand}">Brands</a>
+    <ul class="nav justify-content-center">
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/brand}">Brands</a>
         </li>
         <li>
-            <a th:href="@{/product}">Products</a>
+            <a class="nav-link" th:href="@{/product}">Products</a>
         </li>
     </ul>
 </div>
@@ -23,7 +24,11 @@
     <footer><p class="text-center text-muted">Copyright Simon Hiemstra &copy;2024</p></footer>
 </div>
 
-<div th:fragment="bottomScripts"></div>
+<div th:fragment="bottomScripts">
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</div>
 
 </body>
 </html>
